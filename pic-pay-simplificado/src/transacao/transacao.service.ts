@@ -1,9 +1,10 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Usuarios } from "src/usuarios/entity/usuarios.entity";
 import { Repository } from "typeorm";
 import { TransacaoDto } from "./dto/transacao.dto";
 import { TipoUsuario } from "src/usuarios/usuarios.enum";
+import axios from "axios";
 
 @Injectable()
 export class TransacaoService{
@@ -49,6 +50,17 @@ export class TransacaoService{
             this.verificaTipo(pagador)
 
             await this.usuariosRepository.manager.transaction(async (manager)=>{
+                
+                let resposta: any
+                try{
+                    resposta = await axios.get("https://util.devi.tools/api/v2/authorize")
+                }catch{
+                    throw new BadRequestException("Erro ao validar transação")
+                }
+                
+                if((!resposta.data.data.authorization))
+                    throw new UnauthorizedException("Transação nao autorizada")
+
                 pagador.saldo -= valor
                 recebedor.saldo += valor
 
