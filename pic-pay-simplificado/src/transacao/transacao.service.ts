@@ -51,16 +51,13 @@ export class TransacaoService{
 
             await this.usuariosRepository.manager.transaction(async (manager)=>{
                 
-                let resposta: any
                 try{
-                    resposta = await axios.get("https://util.devi.tools/api/v2/authorize")
-                }catch{
-                    throw new BadRequestException("Erro ao validar transação")
+                    const resposta = await axios.get("https://util.devi.tools/api/v2/authorize")
+                }catch(erro){
+                    throw new UnauthorizedException("Erro ao validar transação")
                 }
+            
                 
-                if((!resposta.data.data.authorization))
-                    throw new UnauthorizedException("Transação nao autorizada")
-
                 pagador.saldo -= valor
                 recebedor.saldo += valor
 
