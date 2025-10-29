@@ -11,8 +11,8 @@ export class AuthController{
     @Post("/login")
     async postLogin(@Body() loginDto: LoginDto, @Res()res: Response): Promise<Response>{
         try{
-            await this.authService.realizaLogin(loginDto)
-            return res.status(HttpStatus.OK).send("Sucesso ao realizar login")
+            const token = await this.authService.realizaLogin(loginDto)
+            return res.status(HttpStatus.OK).json(token)
         }catch(erro){
             throw new UnauthorizedException(erro)
         }
