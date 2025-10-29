@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber } from "class-validator"
+import { IsNotEmpty, IsNumber, IsString } from "class-validator"
+import { TipoTransacao } from "./tipo_transacao.enum"
 
 export class TransacaoDto{
 
@@ -13,6 +14,10 @@ export class TransacaoDto{
     @IsNumber()
     @IsNotEmpty()
     recebedor: number
+
+    @IsString()
+    @IsNotEmpty()
+    tipo_transacao: TipoTransacao
 
 
 }
