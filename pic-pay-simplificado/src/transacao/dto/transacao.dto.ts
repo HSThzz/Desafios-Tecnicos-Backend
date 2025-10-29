@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString } from "class-validator"
-import { TipoTransacao } from "./tipo_transacao.enum"
+import { TipoTransacao } from "../enum/tipo_transacao.enum"
 
 export class TransacaoDto{
 
