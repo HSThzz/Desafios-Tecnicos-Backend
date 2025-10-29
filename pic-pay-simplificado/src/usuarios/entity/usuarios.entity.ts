@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { TipoUsuario } from "../usuarios.enum";
+import { Transacao } from "src/transacao/entity/transacao.entity";
 
 @Entity()
 export class Usuarios{
@@ -25,4 +26,7 @@ export class Usuarios{
 
     @Column({default: 0})
     saldo: number
+
+    @OneToMany(()=> Transacao, (transacao)=> transacao.usuario, {cascade: true})
+    transacao: Transacao[]
 }
