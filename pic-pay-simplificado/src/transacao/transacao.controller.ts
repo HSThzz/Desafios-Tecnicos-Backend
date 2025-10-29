@@ -1,7 +1,8 @@
-import { Body, Controller, HttpStatus, Post, Res } from "@nestjs/common";
+import { Body, Controller, HttpStatus, Post, Res, UseGuards } from "@nestjs/common";
 import { TransacaoDto } from "./dto/transacao.dto";
 import type { Response } from "express";
 import { TransacaoService } from "./transacao.service";
+import { AuthGuard } from "src/auth/auth.guard";
 
 @Controller()
 export class TransacaoController{
@@ -10,6 +11,7 @@ export class TransacaoController{
 
     }
 
+    @UseGuards(AuthGuard)
     @Post('/transacao')
         async postTransacao(@Body() transacao: TransacaoDto, @Res() res: Response): Promise<Response>{
             try{
