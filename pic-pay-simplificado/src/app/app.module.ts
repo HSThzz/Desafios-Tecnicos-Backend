@@ -14,7 +14,8 @@ import { TransacaoModule } from 'src/transacao/transacao.module';
     password: 'postgres',
     database: 'pic_pay_simplificado',
     synchronize: true,
-    autoLoadEntities: true
+    autoLoadEntities: true,
+    logging: true,
   }),UsuariosModule, TransacaoModule],
   controllers: [AppController],
   providers: [AppService],
