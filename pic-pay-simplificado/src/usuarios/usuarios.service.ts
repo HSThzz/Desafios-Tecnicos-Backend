@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Usuarios } from "./entity/usuarios.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { TransacaoDto } from "../transacao/dto/transacao.dto";
-import { TipoUsuario } from "./usuarios.enum";
+import { TipoUsuario } from "./enum/usuarios.enum";
 import { UsuariosDto } from "./dto/usuarios.dto";
 import * as bcrypt from 'bcrypt'
 
@@ -37,5 +37,14 @@ export class UsuariosService{
        
         usuario.senha = await this.hashSenha(senha)
         await this.usuariosRepository.save(usuario)
+    }
+
+    async getUsuario(id: number): Promise<Usuarios>{
+        const usuario = await this.usuariosRepository.findOneBy({id})
+        
+        if(!usuario)
+            throw new NotFoundException("Usuario nao encontrado")
+
+        return usuario
     }
 }
