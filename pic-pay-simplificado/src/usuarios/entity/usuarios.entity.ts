@@ -1,5 +1,5 @@
 import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
-import { TipoUsuario } from "../usuarios.enum";
+import { TipoUsuario } from "../enum/usuarios.enum";
 import { Transacao } from "src/transacao/entity/transacao.entity";
 
 @Entity()
