@@ -4,15 +4,18 @@ import { Usuarios } from "src/usuarios/entity/usuarios.entity";
 import { Repository } from "typeorm";
 import { LoginDto } from "./dto/login.dto";
 import * as bcrypt from 'bcrypt'
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class AuthService{
 
     constructor(
         @InjectRepository(Usuarios)
-        private usuarioRepository: Repository<Usuarios>){}
+        private usuarioRepository: Repository<Usuarios>,
+        private jwtService: JwtService
+    ){}
 
-        async realizaLogin(loginDto: LoginDto): Promise<any>{
+        async realizaLogin(loginDto: LoginDto): Promise<{access_token: string}>{
 
             const usuario = await this.usuarioRepository.findOne({
                 where: {email: loginDto.email}
@@ -25,5 +28,12 @@ export class AuthService{
             if(!isMatch)
                 throw new UnauthorizedException("Senha incorreta")
 
+            const payload = {
+                sub: usuario.id,
+                email: usuario.email
+            }
+            return {
+                access_token: await this.jwtService.signAsync(payload)
+            }
         }
 }
