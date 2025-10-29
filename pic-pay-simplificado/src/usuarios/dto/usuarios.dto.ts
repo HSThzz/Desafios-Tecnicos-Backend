@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength, MinLength } from "class-validator"
-import { TipoUsuario } from "../usuarios.enum"
+import { TipoUsuario } from "../enum/usuarios.enum"
 
 export class UsuariosDto{
     @IsNotEmpty()
