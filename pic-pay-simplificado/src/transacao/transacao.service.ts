@@ -3,7 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Usuarios } from "src/usuarios/entity/usuarios.entity";
 import { EntityManager, Repository } from "typeorm";
 import { TransacaoDto } from "./dto/transacao.dto";
-import { TipoUsuario } from "src/usuarios/usuarios.enum";
+import { TipoUsuario } from "src/usuarios/enum/usuarios.enum";
 import axios from "axios";
 import { Transacao } from "./entity/transacao.entity";
 
