@@ -15,7 +15,6 @@ export class DocumentoDto{
         descricao: string
         
         @IsNotEmpty()
-        @IsString()
-        dataNascimento: string
+        id_beneficiario: number
         
 }
