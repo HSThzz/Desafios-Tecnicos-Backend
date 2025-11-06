@@ -22,7 +22,8 @@ export class DocumentoService{
         const beneficiario = await this.beneficiarioRepository.findOne({
             where: {
                 id: body.id_beneficiario
-            }
+            },
+            relations: ['documentos']
         })
         if(!beneficiario)
             throw new NotFoundException("Usuario nao cadastrado")
@@ -47,7 +48,10 @@ export class DocumentoService{
 
     async buscaDocumentos(id: number): Promise<Documento[]>{
 
-        const beneficiario = await this.beneficiarioRepository.findOneBy({id})
+        const beneficiario = await this.beneficiarioRepository.findOne({
+            where: { id },
+            relations: ['documentos'] // carrega a relação de documentos
+        });
 
         if(!beneficiario)
             throw new NotFoundException("Usuario nao cadastrado")

@@ -23,7 +23,7 @@ export class DocumentoController{
         }
     }
 
-    @Get('/get/documentos')
+    @Get('/get/:id/documentos')
     async buscaDocumentos(@Param('id') id: string, @Res() res: Response): Promise<Response>{
         try{
             const documentos = await this.documentoService.buscaDocumentos(Number(id))
