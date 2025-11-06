@@ -14,10 +14,9 @@ export class Beneficiario{
     @Column({nullable: false})
     dataNascimento: string
     @Column({nullable: false})
-    dataInclusao: string
+    dataInclusao: Date
     @Column()
-    dataAtualizacao: string
-
+    dataAtualizacao: Date
     @OneToMany(()=>Documento, (documento)=>documento.beneficiario)
     documentos: Documento[]
 }
