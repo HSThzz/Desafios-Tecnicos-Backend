@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Documento } from "src/documento/entity/documento.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({name: 'beneficiario_tb'})
 export class Beneficiario{
@@ -17,4 +18,6 @@ export class Beneficiario{
     @Column()
     dataAtualizacao: string
 
+    @OneToMany(()=>Documento, (documento)=>documento.beneficiario)
+    documentos: Documento[]
 }
