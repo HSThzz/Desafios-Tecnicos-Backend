@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DocumentoModule } from 'src/documento/documento.module';
+import { BeneficiariosModule } from 'src/beneficiarios/beneficiarios.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -14,7 +15,7 @@ import { DocumentoModule } from 'src/documento/documento.module';
     type: 'postgres',
     autoLoadEntities: true,
     synchronize: true
-  }), DocumentoModule],
+  }), DocumentoModule, BeneficiariosModule],
   controllers: [AppController],
   providers: [AppService],
 })
