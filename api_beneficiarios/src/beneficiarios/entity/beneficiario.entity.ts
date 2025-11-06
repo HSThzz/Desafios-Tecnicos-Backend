@@ -17,6 +17,6 @@ export class Beneficiario{
     dataInclusao: Date
     @Column()
     dataAtualizacao: Date
-    @OneToMany(()=>Documento, (documento)=>documento.beneficiario)
+    @OneToMany(()=>Documento, (documento)=>documento.beneficiario, {cascade: true, onDelete: 'CASCADE'})
     documentos: Documento[]
 }

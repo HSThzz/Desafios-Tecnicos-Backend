@@ -21,7 +21,7 @@ export class Documento{
     dataAtualizacao: Date
 
 
-    @ManyToOne(()=> Beneficiario, (beneficiario)=>beneficiario.documentos)
+    @ManyToOne(()=> Beneficiario, (beneficiario)=>beneficiario.documentos, {onDelete: 'CASCADE'})
     @JoinColumn({name: 'beneficiario_id'})
     beneficiario: Beneficiario
 

@@ -49,4 +49,17 @@ export class BeneficiariosService{
         return beneficiarios
     }
 
+    async apagaBeneficiario(id: number): Promise<void>{
+
+        const beneficiario = await this.beneficiariosRepository.findOne({
+            where: {id: id},
+            relations: ['documentos']
+    })
+
+        if(!beneficiario)
+            throw new NotFoundException("Nao foi possivel encontrar o beneficiario")
+
+        await this.beneficiariosRepository.delete(beneficiario)
+    }
+
 }
