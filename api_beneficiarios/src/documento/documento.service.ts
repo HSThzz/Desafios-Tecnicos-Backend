@@ -1,27 +1,36 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Documento } from "./entity/documento.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DocumentoDto } from "./dto/documento.dto";
+import { Beneficiario } from "src/beneficiarios/entity/beneficiario.entity";
 
 @Injectable()
 export class DocumentoService{
 
     constructor(
         @InjectRepository(Documento)
-        private documentoRepository: Repository<Documento>
+        private documentoRepository: Repository<Documento>,
+        @InjectRepository(Beneficiario)
+        private beneficiarioRepository: Repository<Beneficiario>
+
     ){
 
     }
 
     async novoDocumento(body: DocumentoDto): Promise<void>{
-        const documento = await this.documentoRepository.findOne({
+        const beneficiario = await this.beneficiarioRepository.findOne({
             where: {
-               tipoDocumento: body.tipoDocumento 
+                id: body.id_beneficiario
             }
         })
-        if(documento)
-            throw new BadRequestException("Erro, documento ja cadastrado")
+        if(!beneficiario)
+            throw new NotFoundException("Usuario nao cadastrado")
+
+        beneficiario.documentos.forEach((documento)=>{
+            if(documento.tipoDocumento == body.tipoDocumento)
+                throw new BadRequestException("Ja existe um documento desse tipo cadastrado")
+        })
 
         const dataAtual = new Date
 
@@ -29,9 +38,21 @@ export class DocumentoService{
             tipoDocumento: body.tipoDocumento,
             descricao: body.descricao,
             dataInclusao: dataAtual,
-            dataAtualizacao: dataAtual
+            dataAtualizacao: dataAtual,
+            beneficiario: beneficiario
         })
 
         await this.documentoRepository.save(novoDocumento)
+    }
+
+    async buscaDocumentos(id: number): Promise<Documento[]>{
+
+        const beneficiario = await this.beneficiarioRepository.findOneBy({id})
+
+        if(!beneficiario)
+            throw new NotFoundException("Usuario nao cadastrado")
+
+        return beneficiario.documentos
+
     }
 }
