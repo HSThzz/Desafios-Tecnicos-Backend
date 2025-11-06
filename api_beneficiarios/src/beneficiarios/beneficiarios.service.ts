@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Get, Injectable, NotFoundException } from "@nestjs/common";
 import { Repository } from "typeorm";
 import { Beneficiario } from "./entity/beneficiario.entity";
 import { InjectRepository } from "@nestjs/typeorm";
@@ -36,6 +36,17 @@ export class BeneficiariosService{
         })
 
         await this.beneficiariosRepository.save(novoBeneficiario)
+    }
+
+    
+    async listaBeneficiarios(): Promise<Beneficiario[]>{
+
+        const beneficiarios: Beneficiario[] = await this.beneficiariosRepository.find()
+
+        if(!beneficiarios)
+            throw new NotFoundException("Nao foram encontrados beneficiarios")
+
+        return beneficiarios
     }
 
 }
