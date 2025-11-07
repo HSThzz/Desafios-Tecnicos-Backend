@@ -59,3 +59,69 @@ Desafios-Tecnicos-Backend/
 │   ├── mini_crm/               # Desafio 2 - Mini Crm
 │   ├── pic-pay-simplificado/   # Desafio 3 - Pic pay simplificado
 └── README.md
+
+⚙️ Como executar o projeto
+1️⃣ Clonar o repositório
+git clone https://github.com/HSThzz/Desafios-Tecnicos-Backend.git
+cd Desafios-Tecnicos-Backend
+
+2️⃣ Instalar dependências
+npm install
+
+3️⃣ Rodar o servidor em modo de desenvolvimento
+npm run start:dev
+
+
+O servidor ficará disponível em:
+👉 http://localhost:3000
+
+📡 Exemplo de endpoint
+
+POST /beneficiarios
+
+{
+  "nome": "Thiago Esmerio",
+  "telefone": "31911111111",
+  "dataNascimento": "15/02/2002"
+}
+
+
+Resposta
+
+{
+  "message": "Beneficiario criado com sucesso"
+}
+
+🧾 Scripts úteis
+Comando	Descrição
+npm run start:dev	Inicia o servidor em modo desenvolvimento
+npm run build	Compila o código TypeScript para JavaScript
+npm run test	Executa os testes automatizados com Jest
+npm run lint	Verifica o código com ESLint
+🧪 Testes
+
+Os testes estão implementados com Jest e cobrem:
+
+Serviços (regras de negócio);
+
+Controllers (rotas e respostas HTTP);
+
+Integrações com banco (quando aplicável).
+
+Para rodar:
+
+npm run test
+
+🧾 Licença
+
+Este projeto é de uso livre para fins de aprendizado e portfólio.
+Sinta-se à vontade para clonar, estudar e adaptar o código.
+
+✉️ Contato
+
+👤 Autor: Thiago Esmerio
+💼 LinkedIn
+
+🐙 GitHub
+
+📧 thiagoesmerio.dev@gmail.com
