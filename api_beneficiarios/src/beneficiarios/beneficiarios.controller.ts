@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Res } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res } from "@nestjs/common";
 import { BeneficiariosService } from "./beneficiarios.service";
 import { BeneficiarioDto } from "./dto/beneficiario.dto";
 import type { Response } from "express";
@@ -39,6 +39,15 @@ export class BeneficiariosController{
         try{
             await this.beneficiarioService.apagaBeneficiario(Number(id))
             return res.status(HttpStatus.OK).send("Beneficiario apagado com sucesso")
+        }catch(erro){
+            return res.status(HttpStatus.BAD_REQUEST).send(erro.message)
+        }
+    }
+    @Put("/atualiza/:id/beneficiarios")
+    async atualizaBeneficiario(@Param('id') id: string, @Body() body: BeneficiarioDto, @Res() res: Response): Promise<Response>{
+        try{
+            await this.beneficiarioService.atualizaBeneficiario(Number(id), body)
+            return res.status(HttpStatus.OK).send("Usario atualizado com sucesso")
         }catch(erro){
             return res.status(HttpStatus.BAD_REQUEST).send(erro.message)
         }

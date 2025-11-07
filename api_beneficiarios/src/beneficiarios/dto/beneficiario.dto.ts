@@ -15,6 +15,6 @@ export class BeneficiarioDto{
         
         @IsNotEmpty()
         @IsString()
-        dataNascimento: string
+        dataNascimento?: string
         
 }

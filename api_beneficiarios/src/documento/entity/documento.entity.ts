@@ -11,7 +11,7 @@ export class Documento{
     @Column({type: 'enum', enum: TipoDocumento})
     tipoDocumento: TipoDocumento
 
-    @Column({unique: true, nullable: false, length: 300})
+    @Column({nullable: false, length: 300})
     descricao: string
 
     @Column({nullable: false})

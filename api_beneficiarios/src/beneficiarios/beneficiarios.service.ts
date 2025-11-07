@@ -3,6 +3,8 @@ import { Repository } from "typeorm";
 import { Beneficiario } from "./entity/beneficiario.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { BeneficiarioDto } from "./dto/beneficiario.dto";
+import { Documento } from "src/documento/entity/documento.entity";
+import { IsEmpty } from "class-validator";
 
 @Injectable()
 export class BeneficiariosService{
@@ -49,17 +51,40 @@ export class BeneficiariosService{
         return beneficiarios
     }
 
+
     async apagaBeneficiario(id: number): Promise<void>{
 
         const beneficiario = await this.beneficiariosRepository.findOne({
-            where: {id: id},
+            where: {
+                id: id
+            },
             relations: ['documentos']
-    })
-
+        })
+    
         if(!beneficiario)
             throw new NotFoundException("Nao foi possivel encontrar o beneficiario")
 
-        await this.beneficiariosRepository.delete(beneficiario)
+        
+        await this.beneficiariosRepository.remove(beneficiario)
+    }
+
+    async atualizaBeneficiario(id: number, body: BeneficiarioDto): Promise<void>{
+
+        if(body.nome == null || body.telefone == null)
+            throw new BadRequestException("Preencha os valores de nome e telefone")
+
+        const beneficiario = await this.beneficiariosRepository.findOneBy({id})
+        if(!beneficiario)
+            throw new NotFoundException("Beneficiario nao encontrado")
+
+        const dataAtual = new Date()
+
+        beneficiario.nome = body.nome
+        beneficiario.telefone = body.telefone
+        beneficiario.dataAtualizacao = dataAtual 
+
+        await this.beneficiariosRepository.save(beneficiario)
+
     }
 
 }
