@@ -32,9 +32,8 @@ Cada desafio aborda um tema diferente do desenvolvimento backend, como:
 | # | Desafio | Descrição | Status |
 |:-:|:---------|:-----------|:--------|
 | 1 | **Beneficiários API** | CRUD completo de beneficiários com validação e integração com banco. | ✅ Concluído |
-| 2 | **Gestão de Pedidos** | Sistema de pedidos e produtos, com relacionamento e cálculos. | ✅ Concluído |
-| 3 | **Integração de Sistemas** | Consome dados externos e integra em serviços internos. | 🚧 Em andamento |
-| 4 | **Validação Avançada** | Testes de regras de negócio e tratamento de erros customizados. | 🕒 Planejado |
+| 2 | **Mini Crm** | Mini Crm com clientes e contatos. | ✅ Concluído |
+| 3 | **Pic Pay Simplificado** | Simula um ambiente de transações entre lojistas e usuarios, com autenticação via bearer token e validação em serviçoes terceiros via axios. | ✅ Concluído |
 
 > ⚙️ Cada módulo dentro de `/src` representa um desafio técnico independente.
 
@@ -45,7 +44,7 @@ Cada desafio aborda um tema diferente do desenvolvimento backend, como:
 - **NestJS** — Framework backend progressivo para Node.js  
 - **TypeScript** — Superset do JavaScript com tipagem estática  
 - **Node.js** — Ambiente de execução  
-- **TypeORM** — ORM para banco de dados relacional (quando aplicável)  
+- **TypeORM** — ORM para banco de dados relacional (Postgres)  
 - **Class Validator / Transformer** — Validação e transformação de DTOs  
 - **Jest** — Framework de testes unitários  
 
@@ -56,12 +55,7 @@ Cada desafio aborda um tema diferente do desenvolvimento backend, como:
 ```bash
 Desafios-Tecnicos-Backend/
 ├── src/
-│   ├── beneficiarios/      # Desafio 1 - CRUD de beneficiários
-│   ├── pedidos/            # Desafio 2 - Sistema de pedidos e produtos
-│   ├── integracao/         # Desafio 3 - Integração de serviços externos
-│   ├── common/             # Utilitários e classes compartilhadas
-│   └── main.ts             # Ponto de entrada da aplicação
-├── test/                   # Testes unitários
-├── package.json
-├── tsconfig.json
+│   ├── beneficiarios/          # Desafio 1 - CRUD de beneficiários
+│   ├── mini_crm/               # Desafio 2 - Mini Crm
+│   ├── pic-pay-simplificado/   # Desafio 3 - Pic pay simplificado
 └── README.md
