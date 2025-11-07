@@ -52,7 +52,7 @@ Cada desafio aborda um tema diferente do desenvolvimento backend, como:
 
 ## 📂 Estrutura do projeto
 
-```bash
+
 Desafios-Tecnicos-Backend/
 ├── src/
 │   ├── beneficiarios/          # Desafio 1 - CRUD de beneficiários
@@ -60,7 +60,8 @@ Desafios-Tecnicos-Backend/
 │   ├── pic-pay-simplificado/   # Desafio 3 - Pic pay simplificado
 └── README.md
 
-⚙️ Como executar o projeto
+
+## ⚙️ Como executar o projeto
 1️⃣ Clonar o repositório
 git clone https://github.com/HSThzz/Desafios-Tecnicos-Backend.git
 cd Desafios-Tecnicos-Backend
@@ -75,7 +76,7 @@ npm run start:dev
 O servidor ficará disponível em:
 👉 http://localhost:3000
 
-📡 Exemplo de endpoint
+## 📡 Exemplo de endpoint
 
 POST /beneficiarios
 
@@ -92,7 +93,7 @@ Resposta
   "message": "Beneficiario criado com sucesso"
 }
 
-🧾 Scripts úteis
+## 🧾 Scripts úteis
 Comando	Descrição
 npm run start:dev	Inicia o servidor em modo desenvolvimento
 npm run build	Compila o código TypeScript para JavaScript
@@ -112,12 +113,12 @@ Para rodar:
 
 npm run test
 
-🧾 Licença
+## 🧾 Licença
 
 Este projeto é de uso livre para fins de aprendizado e portfólio.
 Sinta-se à vontade para clonar, estudar e adaptar o código.
 
-✉️ Contato
+## ✉️ Contato
 
 👤 Autor: Thiago Esmerio
 💼 LinkedIn
