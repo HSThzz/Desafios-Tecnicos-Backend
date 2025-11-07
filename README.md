@@ -52,15 +52,15 @@ Cada desafio aborda um tema diferente do desenvolvimento backend, como:
 
 ## 📂 Estrutura do projeto
 
-
+```bash
 Desafios-Tecnicos-Backend/
 ├── src/
 │   ├── beneficiarios/          # Desafio 1 - CRUD de beneficiários
 │   ├── mini_crm/               # Desafio 2 - Mini Crm
 │   ├── pic-pay-simplificado/   # Desafio 3 - Pic pay simplificado
 └── README.md
-
-
+```
+---
 ## ⚙️ Como executar o projeto
 1️⃣ Clonar o repositório
 git clone https://github.com/HSThzz/Desafios-Tecnicos-Backend.git
